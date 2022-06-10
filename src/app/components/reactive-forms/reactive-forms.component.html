@@ -1,0 +1,64 @@
+<div class="card card-body m-5 bg-light">
+    <h2 class="text-center">Contact Us</h2>
+    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non repudiandae doloremque iure to rerum unde.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-left bg-white rounded shadow py-3">
+            <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">UserName</label>
+                  <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter a UserName">
+                  <div *ngIf="f['username'].touched && f['username'].errors">
+                  <div *ngIf="f['username'].errors['required']" class="text-danger">Username is Required</div>
+                  <div *ngIf="f['username'].errors['nameIsNotAllowed']" class="text-danger">{{f['username'].value}} is not Allowed</div>
+                </div>
+              </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email">
+                    <div *ngIf="f['email'].touched && f['email'].errors">
+                    <div *ngIf="f['email'].errors['required']" class="text-danger">
+                          Email is Required
+                      </div>
+                      <div *ngIf="f['email'].errors['email']" class="text-danger">
+                            Enter valid Email Address
+                      </div>
+                    </div>  
+                  </div>
+                  
+                <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Select Course</label>
+                  <select class="form-select" id="course" formControlName="course">
+                    <option selected>Open this select menu</option>
+                    <option value="Angular">Angular</option>
+                    <option value="Python">Python</option>
+                    <option value="Javascript">Javascript</option>
+                    </select>
+                </div>
+               
+                <div class="md-3">
+                    <label for="gender" class="form-label">Select Gender</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"  value="Male" id="male" formControlName="gender">
+                        <label class="form-check-label" for="male">
+                          Male
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio"  value="female" id="female" formControlName="gender">
+                        <label class="form-check-label" for="female">
+                          Female
+                        </label>
+                      </div>
+                </div>
+
+                <div class="mb-3" formArrayName="skills">
+                    <ng-container *ngFor="let skill of skillFormArray; index as i">
+                    <input type="text" class="form-control mt-2" formControlName="{{i}}" placeholder="Add Skill">
+                    </ng-container>
+                    <button class="btn btn-light btn-sm mt-3 btn-add" (click)="onAddSkills()"><i>+</i> Add Skill</button>
+                  </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+    </div>
+</div>

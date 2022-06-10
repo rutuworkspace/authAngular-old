@@ -1,0 +1,52 @@
+<div class="card card-body bg-light mt-5 fw-bold">
+  Welcome, {{user ? user.displayName : 'User'}}
+</div>
+
+<div class="card bg-light my-5">
+    <h2 class="text-center">Manage Users</h2>
+  
+  <div class="container border-top pt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Add users</h2>
+  
+        <form #userForm="ngForm" (ngSubmit)="onAddUser(userForm.value)">
+          <div class="form-group">
+            <label for="id">User Name</label>
+            <input type="text" class="form-control" name="name" ngModel required>
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Technology</label>
+            <input type="text" class="form-control" name="technology" ngModel required>
+          </div>
+
+          <button class="btn btn-primary my-3" type="submit">{{editMode ? 'Update User' : 'Add User'}}</button>
+          <button class="btn btn-success mx-2" type="button" (click)="fetchUser()">Fetch User</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h2>{{userTitle}}</h2>
+        <table class="table">
+          <thead class="bg-dark text-white">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Technology</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; index as i">
+              <td>{{user.name}}</td>
+              <td>{{user.technology}}</td>
+              <td><a class="text-success" (click)="onEdit(user.userId,i)">Edit</a></td>
+              <td><a class="text-danger" (click)="onDelete(user.userId)">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  </div>

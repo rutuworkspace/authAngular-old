@@ -1,0 +1,21 @@
+.btn-add{
+    font-size: 13px;
+    font-weight: 700px;
+    color: rgb(0, 0, 0.4);
+}
+
+.btn-add i{
+    font-size: 23px;
+    line-height: 12px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    margin-right: 3px;
+    text-align: center;
+}
+
+.btn-add:hover{
+    border: 1px solid #007bff;
+    background: #fff;
+    color: #007bff;
+}
