@@ -33,7 +33,11 @@ export class ManageUserComponent implements OnInit {
     this.authServ.profileInfo.subscribe(res=>{
       this.user = res;
     })
+
+
   }
+
+
 
   onAddUser(userData:Users){
     if(this.userForm.valid){

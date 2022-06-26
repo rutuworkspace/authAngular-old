@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,10 @@ import { AuthService } from 'src/app/service/auth.service';
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   user:any;
+  exclusive : boolean = false;
   constructor(private authServ : AuthService,
-              private router : Router) { }
+              private router : Router,
+              private userServ : UserService) { }
 
   ngOnInit(): void {
 
@@ -26,6 +29,13 @@ export class HeaderComponent implements OnInit {
         }else{
           this.isLoggedIn = false;
         }
+      }
+    })
+
+    //subject subscription
+    this.userServ.exclusive.subscribe({
+      next:(res:any)=>{
+        this.exclusive = res;
       }
     })
   }

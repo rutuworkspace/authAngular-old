@@ -164,11 +164,11 @@ export class AuthService {
     ) 
   }
 
-  googleSignin(googleData:any){
+  googleSignin(token:any){
     return this.http.post<any>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=${config.API_KEY}`,
     {
-      postBody : `id_token=${googleData}&providerId=google.com`,
-      requestUri : 'http://localhost:4200',
+      postBody : `id_token=${token}&providerId=google.com`,
+      requestUri : 'http://localhost:4500',
       returnIdpCredential : true,
       returnSecureToken : true
     }

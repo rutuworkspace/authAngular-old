@@ -14,10 +14,14 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { ForgetPasswordComponent } from './components/forget-password/forget-password.component'
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+
+import { Comp1Component } from './testComp/comp1/comp1.component';
+import { Comp2Component } from './testComp/comp2/comp2.component';
+import { Comp3Component } from './testComp/comp3/comp3.component';
 
 
 @NgModule({
@@ -31,7 +35,10 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
     DashboardComponent,
     ProfileComponent,
     ChangePasswordComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    Comp1Component,
+    Comp2Component,
+    Comp3Component
   ],
   imports: [
     BrowserModule,
@@ -50,11 +57,11 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '745028795960-1kf45uig4qbj4q5jatue3gvc3ioo9usv.apps.googleusercontent.com'
+              'clientId'
             )
           }
         ],
-        onError: (err) => {
+        onError: (err:any) => {
           console.error(err);
         }
       } as SocialAuthServiceConfig,

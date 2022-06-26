@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-header fw-bold">
+      Component 1
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">User name is <span class="text-primary fw-bold">{{userName}}</span></h5>
+     <input type="text" class="form-control mb-3" #uname>
+      <a (click)="getUsername(uname.value)" class="btn btn-primary">Get Username</a>
+    </div>
+  </div>

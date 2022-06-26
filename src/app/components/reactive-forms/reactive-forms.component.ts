@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -7,10 +8,10 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reactive-forms.component.css']
 })
 export class ReactiveFormsComponent implements OnInit {
-
+  userName! : string;
   myReactiveForm! : FormGroup;
   notAllowedNames = ['Roni','Toni'];
-  constructor() { }
+  constructor(private userServ : UserService) { }
 
   ngOnInit(): void {
     this.myReactiveForm = new FormGroup({
@@ -22,6 +23,13 @@ export class ReactiveFormsComponent implements OnInit {
         new FormControl('',Validators.required)
       ])
     })
+
+    this.userServ.userName.subscribe({
+      next:(res:any)=>{
+        this.userName = res;
+      }
+    })
+    
   }
 
   get f()
@@ -49,5 +57,6 @@ export class ReactiveFormsComponent implements OnInit {
     console.log(this.myReactiveForm);
     
   }
+  
 
 }

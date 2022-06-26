@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProdServiceService } from 'src/app/service/prod-service.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-manage-products',
@@ -42,11 +43,20 @@ export class ManageProductsComponent implements OnInit {
 }
   ]
   
-  constructor(private prodServ : ProdServiceService) { }
+  constructor(private prodServ : ProdServiceService,
+              private userServ : UserService) { }
 
   ngOnInit(): void {
     this.onFetchProduct();
+
+        //next Subscribed Subject
+        this.userServ.exclusive.next(true)
   }
+
+          //Destroying Subject
+          ngOnDestroy(): void {
+            this.userServ.exclusive.next(false);
+           }
   
   onAddProduct(id:any,name:any,price:any){
     if(!this.editMode){
